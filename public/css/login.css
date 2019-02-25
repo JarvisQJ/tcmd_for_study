@@ -1,0 +1,76 @@
+/*登录页主体*/
+.main{
+    background: #f4f5f4;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.main-box{
+
+}
+.bg{
+    position: relative;
+    text-align: center;
+}
+.bg-box{
+    position: absolute;
+    top: 185px;
+    right: 200px;
+}
+.main-title{
+    text-align: center;
+}
+.main-title h3{
+    font-size: 20px;
+    color: #000;
+    font-weight: normal;
+}
+.main-title h4{
+    font-weight: normal;
+    font-size: 14px;
+    color: #999;
+    line-height: 20px;
+    width: 370px;
+    margin-top: 24px;
+}
+.info{
+    padding-left: 25px;
+    margin-top: 41px;
+}
+.info li{
+    height: 60px;
+    line-height: 66px;
+    text-align: left;
+}
+.info input,.info span,.info i{
+    font-size: 14px;
+    color: #999;
+}
+.info input{
+    padding: 5px 4px;
+    color:#333;
+}
+.info span{
+    font-size: 20px;
+    margin-right: 25px;
+}
+.info i{
+    font-style: normal;
+}
+.info li:first-child{
+    border-bottom: 1px solid #d9dbdd;
+}
+.info li:nth-child(2){
+    border-bottom: 1px solid #d9dbdd;
+}
+.Lbtn{
+    margin-top: 60px;
+    text-align: center;
+}
+.btn{
+    padding: 8px 46px;
+    background: #4fb773;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+}

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>疾病诊断</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/hf.css">
+    <link rel="stylesheet" href="../css/disease_diagnosis.css">
+    <style>
+        #indicatorContainer{
+            display: none;
+        }
+        .title_dataShow{
+            display: none;
+        }
+        .dataShow{
+            margin-top: 0;
+        }
+        .disease{
+            display: none;
+        }
+        .report{
+            line-height: 0;
+        }
+        #im{
+            margin-top: 34px;
+            padding: 17px 49px;
+            background: #4fb773;
+            color: #fff;
+            border-radius: 4px;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+<!--页头-->
+<%- include('../include/header') -%>
+<!--主体部分-->
+<div class="main">
+    <div class="main-box  container">
+        <!--头部-->
+        <div class="main_header_box">
+            <div id="main_header">
+                <p class="title_main_header">中医分型</p>
+                <ul class="navs">
+                    <li><a href="indexPage">诊断中&nbsp;&nbsp;/</a></li><li><a href="patientInforPage" target="_blank">&nbsp;患者信息&nbsp;&nbsp;/</a></li><li><a href="primaryDiagnosisPage" target="_blank">&nbsp;初级诊断&nbsp;&nbsp;/</a></li><li><a href="diseaseDiagnosisPage" target="_blank">&nbsp;疾病诊断&nbsp;&nbsp;/</a></li><li><a href="tcmtPage" target="_blank">&nbsp;中医分型</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--主体-->
+        <div class="main_content">
+            <!--病种可能性分析-->
+            <div class="disease">
+                <p class="title_disease">
+                    <span>可能性分析</span>
+                </p>
+                <div class="sidebar lf">
+                    <ul class="percents">
+                        <!--<li class="cur"><b class="percent">80%</b><span class="t_percent">风寒湿痹型</span></li>-->
+                        <!--<li class=""><b class="percent">30%</b><span class="t_percent">气滞血瘀型</span></li>-->
+                        <!--<li class=""><b class="percent">10%</b><span class="t_percent">痰湿阻滞型</span></li>-->
+                    </ul>
+                </div>
+                <div class="panel lf">
+                    <!--匹配症状-->
+                    <div class="suit_symptom">
+                        <p class="symptom_header">
+                            <i class="mark"></i>
+                            <span class="title_symptom">匹配症状</span>
+                        </p>
+                        <ul class="lists">
+                            <!--<li><b>1.</b><span>酸痛</span></li>-->
+                            <!--<li><b>2.</b><span>冷痛 </span></li>-->
+                            <!--<li><b>3.</b><span>肌肉萎缩  </span></li>-->
+                            <!--<li><b>4.</b><span>头或颈部沉重</span></li>-->
+                            <!--<li><b>5.</b><span>恶寒</span></li>-->
+                        </ul>
+                    </div>
+                    <!--不匹配症状-->
+                    <div class="unsuit_symptom">
+                        <p class="symptom_header">
+                            <i class="mark"></i>
+                            <span class="title_symptom">不匹配症状</span>
+                        </p>
+                        <ul class="lists">
+                            <!--<li><span>舌质暗</span></li>-->
+                            <!--<li><span>失眠多梦</span></li>-->
+                        </ul>
+                    </div>
+                    <!--参考症状-->
+                    <div class="reference_symptom">
+                        <p class="symptom_header">
+                            <i class="mark"></i>
+                            <span class="title_symptom">参考症状</span>
+                        </p>
+                        <ul class="lists">
+                            <!--<li><span>畏风、遇寒加重</span></li>-->
+                            <!--<li><span>枕颈部痛 </span></li>-->
+                            <!--<li><span>舌薄白</span></li>-->
+                            <!--<li><span>舌质淡</span></li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="dataShow lf">
+                    <div id="indicatorContainer"></div>
+                    <p class="title_dataShow">
+                        风寒湿痹型
+                    </p>
+                    <div class="dataShow_content">
+                        <p class="symptom_header">
+                            <i class="mark"></i>
+                            <span class="title_symptom">治疗方案</span>
+                        </p>
+                        <p class="content">
+                            <!--治法：温补。在颈椎病中，以神经根型的发生最多，大约占到病人中的半以上。一开始，病人多为脖子和肩膀痛，并且在短期内加重。疼痛还可以向胳膊放射，皮肤可有麻木、过敏等感觉异常，同时还觉得上肢肌力下降，手指头动作不灵活。当头部或者上肢姿势不当、突然受到牵拉或撞击时，患侧上肢可以发生剧烈的闪电样锐痛。-->
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--历史病案-->
+            <table id="history" align="center">
+                <tr>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>病症名称</th>
+                    <th>分型名称</th>
+                    <th>就诊时间</th>
+                    <th>操作</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>张三</td>
+                    <td>男</td>
+                    <td>42 岁</td>
+                    <td>颈型颈椎病</td>
+                    <td>风湿湿痹型</td>
+                    <td>2015-12-24</td>
+                    <td><a href="#">查看详情</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>张三</td>
+                    <td>男</td>
+                    <td>42 岁</td>
+                    <td>颈型颈椎病</td>
+                    <td>风湿湿痹型</td>
+                    <td>2015-12-24</td>
+                    <td><a href="#">查看详情</a></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>张三</td>
+                    <td>男</td>
+                    <td>42 岁</td>
+                    <td>颈型颈椎病</td>
+                    <td>风湿湿痹型</td>
+                    <td>2015-12-24</td>
+                    <td><a href="#">查看详情</a></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>张三</td>
+                    <td>男</td>
+                    <td>42 岁</td>
+                    <td>颈型颈椎病</td>
+                    <td>风湿湿痹型</td>
+                    <td>2015-12-24</td>
+                    <td><a href="#">查看详情</a></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>张三</td>
+                    <td>男</td>
+                    <td>42 岁</td>
+                    <td>颈型颈椎病</td>
+                    <td>风湿湿痹型</td>
+                    <td>2015-12-24</td>
+                    <td><a href="#">查看详情</a></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>张三</td>
+                    <td>男</td>
+                    <td>42 岁</td>
+                    <td>颈型颈椎病</td>
+                    <td>风湿湿痹型</td>
+                    <td>2015-12-24</td>
+                    <td><a href="#">查看详情</a></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>张三</td>
+                    <td>男</td>
+                    <td>42 岁</td>
+                    <td>颈型颈椎病</td>
+                    <td>风湿湿痹型</td>
+                    <td>2015-12-24</td>
+                    <td><a href="#">查看详情</a></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>张三</td>
+                    <td>男</td>
+                    <td>42 岁</td>
+                    <td>颈型颈椎病</td>
+                    <td>风湿湿痹型</td>
+                    <td>2015-12-24</td>
+                    <td><a href="#">查看详情</a></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>张三</td>
+                    <td>男</td>
+                    <td>42 岁</td>
+                    <td>颈型颈椎病</td>
+                    <td>风湿湿痹型</td>
+                    <td>2015-12-24</td>
+                    <td><a href="#">查看详情</a></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>张三</td>
+                    <td>男</td>
+                    <td>42 岁</td>
+                    <td>颈型颈椎病</td>
+                    <td>风湿湿痹型</td>
+                    <td>2015-12-24</td>
+                    <td><a href="#">查看详情</a></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>张三</td>
+                    <td>男</td>
+                    <td>42 岁</td>
+                    <td>颈型颈椎病</td>
+                    <td>风湿湿痹型</td>
+                    <td>2015-12-24</td>
+                    <td><a href="#">查看详情</a></td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>张三</td>
+                    <td>男</td>
+                    <td>42 岁</td>
+                    <td>颈型颈椎病</td>
+                    <td>风湿湿痹型</td>
+                    <td>2015-12-24</td>
+                    <td><a href="#">查看详情</a></td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>张三</td>
+                    <td>男</td>
+                    <td>42 岁</td>
+                    <td>颈型颈椎病</td>
+                    <td>风湿湿痹型</td>
+                    <td>2015-12-24</td>
+                    <td><a href="#">查看详情</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="report">
+    <div class="report_box container">
+        <p class="rt btns">
+            <!--<button type="reset" value="Reset" class="reset">重新添加主诉</button>-->
+            <a href="casePage" class="submit" id="im">生成病例</a>
+        </p>
+    </div>
+</div>
+<!--页尾-->
+<%- include('../include/footer') -%>
+</body>
+<script src="../js/jquery-1.11.3.js"></script>
+<script src="../js/tcmt.js"></script>
+<script src="../js/radialIndicator.min.js"></script>
+<script src="../js/sharing.js"></script>
+<script>
+    //百分比环形图
+    $('#indicatorContainer').radialIndicator({
+        barColor: '#ffc539',
+        barWidth: 10,
+        initValue: 80,
+        roundCorner : true,
+        percentage: true
+    });
+
+</script>
+</html>

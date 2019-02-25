@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>个人设置</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/hf.css">
+
+    <style>
+        /*面板样式 诊断中*/
+        #content{
+            width: 983px;
+        }
+        .sort{
+            height: 101px;
+            line-height: 101px;
+            padding-left: 34px;
+            border-bottom:1px solid #d9dbdd;
+        }
+        .c-title {
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        /*个人设置*/
+        .personal{
+            margin-top: 20px;
+        }
+        .personal li{
+            padding:14px 25px;
+            overflow: hidden;
+            border: 1px solid #d9dbdd;
+            border-bottom: 0;
+            font-size: 14px;
+        }
+        .personal li:last-child{
+            border-bottom:1px solid #d9dbdd;
+        }
+        .personal li:first-child{
+            background:#fbfbfb;
+        }
+        .personal span{
+            float: left;
+            color: #666;
+        }
+        .personal b,.personal a{
+            float: right;
+            font-weight: normal;
+            color: #333;
+        }
+        .personal a{
+            color: #2db7f5;
+        }
+        .con-box{
+            padding-left: 34px;
+            padding-right: 34px;
+        }
+        #content3 .con-box{
+            margin:34px;
+            background: #fbfbfb;
+            border: 1px solid #d9dbdd;
+        }
+
+        /*编辑框*/
+        #content6 .mask{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            filter:alpha(opacity=50);
+            -moz-opacity:0.5;
+            -khtml-opacity: 0.5;
+            opacity: 0.5;
+        }
+        #content6 .edit{
+            position: fixed;
+            z-index: 999;
+            width: 524px;
+            height: 538px;
+            left:50%;
+            top:50%;
+            margin-left: -262px;
+            margin-top: -269px;
+            /*border: 1px solid #000;*/
+            padding: 60px 60px;
+            background: #fff;
+        }
+        .edit{
+            position: relative;
+        }
+        /*关闭按钮*/
+        .close{
+            position: absolute;
+            font-size: 36px;
+            color:#999;
+            top:0;
+            right: 14px;
+        }
+        /*编辑框样式*/
+        .edit-det li, .edit-det1 li{
+            margin-top: 33px;
+            text-align: center;
+        }
+        .edit-det li:first-child,.edit-det1 li:first-child{
+            margin-top: 0;
+        }
+        .edit-det  span,input{
+            color: #333;
+        }
+        .edit-det1  span,input{
+            color: #333;
+        }
+        .edit-det  .i1,.edit-det1  input{
+            border: 1px solid #d9dbdd;
+            height: 32px;
+            width: 174px;
+            padding-left: 5px;
+        }
+        .edit-det  span,.edit-det1  span{
+            display: inline-block;
+            width:74px;
+            height: 32px;
+            text-align: right;
+            margin-right: 10px;
+        }
+        .edit-btn{
+            position: absolute;
+            display: inline-block;
+            padding: 6px 18px;
+            background:#4fb773;
+            color:#fff;
+            right:104px;
+            bottom: 60px;
+            border-radius: 4px;
+        }
+
+        .edit-box,.edit-box1{
+            display: none;
+            position: relative;
+        }
+        .edit-det li{height: 40px;}
+
+        .hint{
+            font-style: normal;
+            color:#f00;
+            position: absolute;
+            top: 39px;
+            left: 159px;
+            display: none;
+        }
+        .now{
+            display:block;
+        }
+    </style>
+</head>
+<body>
+<!--页头-->
+<%- include('../include/header') -%>
+<!--主体部分-->
+<div class="main">
+    <div class="main-box  container">
+        <!--侧边栏-->
+        <div id="sidebar" class="lf">
+            <!--疾病诊断-->
+            <ul>
+                <li class="illness"><span class="L-title">疾病诊断</span></li>
+                <li class="T" id="illnessN"><a href="indexNPage">待诊断</a></li>
+                <li class="T" id="illness"><a href="indexPage">诊断中</a></li>
+            </ul>
+            <!--病案库-->
+            <ul>
+                <li class="record"><span class="L-title">病案库</span></li>
+                <li class="T" id="record"><a href="historyPage">历史病案</a></li>
+                <li  id="test"><a href="studyPage">病案学习</a></li>
+            </ul>
+            <!--模拟诊断-->
+            <!--<ul>-->
+                <!--<li class="test"><span class="L-title">模拟诊断</span></li>-->
+                <!--<li class="T"><a href="javascript:;">模拟学习</a></li>-->
+            <!--</ul>-->
+            <!--设置-->
+            <ul>
+                <li class="setting"><span class="L-title">设置</span></li>
+                <li class="T" id="setting"><a href="comSettingPage">常用病症设置</a></li>
+                <li class="T cur" id="p-setting"><a href="personSettingPage">个人设置</a></li>
+            </ul>
+        </div>
+
+        <div id="content" class="rt">
+            <div class="contents">
+                <!--切换面板 个人设置-->
+                <div id="content6">
+                    <div class="sort">
+                        <p class="c-title c-t">个人设置</p>
+                    </div>
+                    <div class="con-box">
+                        <ul class="personal p_more">
+                            <li class="title">
+                                <span>账号信息</span>
+                            </li>
+                            <li>
+                                <span>手机号</span>
+                                <b id="phoneNo"></b>
+                            </li>
+                            <li>
+                                <span>密码</span>
+                                <a href="javascript:;" class="open-edit1">修改密码</a>
+                            </li>
+                        </ul>
+                        <ul class="personal p_more personal2">
+                            <li class="title">
+                                <span>个人信息</span>
+                                <a href="javascript:;" class="open-edit">编辑</a>
+                            </li>
+                            <li>
+                                <span>姓名</span>
+                                <b class="u_name"></b>
+                            </li>
+                            <li>
+                                <span>年龄</span>
+                                <b class="age"></b>
+                            </li>
+                            <li>
+                                <span>性别</span>
+                                <b class="gender"></b>
+                            </li>
+                            <li>
+                                <span>所在科室</span>
+                                <b class="office"></b>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--密码编辑框-->
+                    <div class="edit-box1">
+                        <div class="mask"></div>
+                        <div class="edit">
+                            <a href="javascript:;" class="close">×</a>
+                            <form action="" id="edit-form">
+                                <ul class="edit-det1">
+                                    <!--<li><span>手机号：</span><input type="text" class="phoneNo"></li>-->
+                                    <li><span>原密码：</span><input type="password" class="oldPassword"></li>
+                                    <li><span>新密码：</span><input type="password" class="newPassword"></li>
+                                    <li><span>确认密码：</span><input type="password" class="rePassword"></li>
+                                </ul>
+                                <a class="edit-btn" href="javascript:;" id="pasBtn">确定</a>
+                            </form>
+                        </div>
+                    </div>
+                    <!--编辑框-->
+                    <div class="edit-box">
+                        <div class="mask"></div>
+                        <div class="edit">
+                            <a href="javascript:;" class="close">×</a>
+                            <form action="" id="edit-form">
+                                <ul class="edit-det">
+                                    <li><span>姓名：</span><input type="text" class="u_name i1"></li>
+                                    <li><span>手机号：</span><input type="text" class="phoneNo1 i1" disabled></li>
+                                    <li style="position: relative">
+                                        <span>年龄：</span>
+                                        <input type="number" class="age i1">
+                                        <div class="hint">年龄应为0到120内数值</div>
+                                    </li>
+                                    <!--<li><span>性别：</span><input type="text" class="gender"></li>-->
+                                    <!--2017/11/6   改为单选框-->
+                                    <li><span class="lf" style="margin-left: 73px">性别：</span>
+                                        <div class="genderAreaBox lf">
+                                            <label for="mans" class="man" style="vertical-align:middle">
+                                                <input id="mans" type="radio" name="sex" checked="checked" style="vertical-align:middle" value="男"/>
+                                               &nbsp;男&nbsp;
+                                            </label>
+
+                                            <label for="womans" class="woman" style="vertical-align:middle">
+                                                <input  id="womans" type="radio" name="sex" style="vertical-align:middle" value="女"/>&nbsp;&nbsp;女
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li><span>所在科室：</span><input type="text"   class="office i1"></li>
+                                </ul>
+                                <a class="edit-btn" href="javascript:;" id="editInfo">确定</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--页尾-->
+<%- include('../include/footer') -%>
+</body>
+<script src="../js/jquery-1.11.3.js"></script>
+<script src="../js/sharing.js"></script>
+<script>
+    //加载个人信息
+    $(function(){
+        $.ajax({
+            type:'get',
+            url:'/user/doctorInfo?id='+sessionStorage['id'],
+            success:function(data){
+                console.log('加载个人信息',data);
+                if(!data.realName){//'',undifined,null
+                    $('b.u_name').html('-');
+                }else{
+                    $('b.u_name').html(data.realName);
+                }
+//                $('b.u_name').html(data.realName);
+                if(!data.age){
+                    $('b.age').html('-');
+                }else{
+                    $('b.age').html(data.age);
+                }
+
+                $('#phoneNo').html(data.phoneNo);
+//                $('b.gender').html(data.gender);
+
+
+                if(!data.gender){
+                    $('b.gender').html('-');
+                }else{
+                    $('b.gender').html(data.gender);
+                }
+
+                if(!data.doctorTitle){
+                    $('b.office').html('-');
+                }else{
+                    $('b.office').html(data.doctorTitle);
+                }
+//                $('b.office').html(data.doctorTitle);
+
+                $('.p_more b').each(function(){
+                    console.log('===1',$(this).attr('class'));
+                    console.log('====2',$(this).html());
+                    //获取class
+                    var comClass=$(this).attr('class');
+                    //获取值
+                    var comVal=$(this).html();
+                    //获取edit-det中class为comClass的input
+                    $("input."+comClass).val(comVal);
+
+                    //  显示性别 2017/11/6
+                    if(data.gender=='男'){
+                        $("#mans").attr({checked:"checked"});
+                    }else{
+                        $("#womans").attr({checked:"checked"});
+                    }
+
+                    $('.phoneNo1').val(data.phoneNo);
+                });
+
+
+            }
+        })
+    })
+
+
+    //点击编辑按钮
+    $('.open-edit').click(function(){
+        $(".edit-box").css('display','block');
+    })
+    //编辑密码
+    $('.open-edit1').click(function(){
+        $(".edit-box1").css('display','block');
+    })
+    //关闭编辑密码
+    $('.edit-box1 .close').click(function(){
+        $(".edit-box1").css('display','none');
+    })
+    //编辑框关闭按钮
+    $('.edit-box .close').click(function(){
+        $(".edit-box").css('display','none');
+    })
+
+    //检查年龄
+    function ageCheck(){
+        var check = true;
+        if($('#edit-form .age').val()){
+            if($('#edit-form .age').val()<121&&$('#edit-form .age').val()>0){
+                check = true;
+            }
+            else{
+                check = false;
+            }
+        }
+        console.log('年龄：',check);
+        return check;
+    }
+    $('#edit-form .age').focus(function(){
+        if($(this).val()==""){
+            $(this).siblings('.hint').removeClass('now');
+        }
+    });
+
+    $('#edit-form .age').blur(function(){
+        if($(this).val()<0||$(this).val()>120){
+            $(this).siblings('.hint').addClass('now');
+        }else{
+            $(this).siblings('.hint').removeClass('now');
+        }
+    });
+
+    //点击编辑框确定按钮
+    $('#editInfo').click(function(){
+        console.log(ageCheck(),'===ageCheck()');
+        if(ageCheck()){
+            console.log('修改性别:',$('input:radio[name="sex"]:checked').val());
+            console.log('1=',$('.phoneNo1').val());
+            console.log('2=',$('input.u_name').val());
+            console.log('3=',$('input.age').val());
+            console.log('4=',$('input:radio[name="sex"]:checked').val());
+            console.log('5=',$('input.office').val());
+        $.ajax({
+            type:'put',
+            url:'/user/doctorInfo',
+            data:{
+                'phoneNo':$('.phoneNo1').val(),
+                'realName':$('input.u_name').val(),
+                'age':$('input.age').val(),
+                'gender':$('input:radio[name="sex"]:checked').val(),
+                'doctorTitle':$('input.office').val()
+            },
+            success:function(data){
+                console.log('!!!!',data);
+                if(data.errcode==0){
+                    console.log('修改个人信息成功');
+                    //修改父级数据
+                    $('.edit-det input').each(function(){
+                        console.log($(this).attr('class'));
+                        console.log($(this).val());
+                        //获取class
+                        var comClass=$(this).attr('class');
+                        //获取值
+                        var comVal=$(this).val();
+                        //获取edit-det中class为comClass的input
+                        $("b."+comClass).html(comVal);
+
+                    });
+                    //  显示性别 2017/11/6
+                    if($('input:radio[name="sex"]:checked').val()=='男'){
+                        $(".personal .gender").html('男');
+                    }else{
+                        $(".personal .gender").html('女');
+                    }
+                    $('.personal2 .u_name').html($('#edit-form .u_name').val());
+                    $('.personal2 .age').html($('#edit-form .age').val());
+                    $('.personal2 .office').html($('#edit-form .office').val());
+                    $('#phoneNo').html($('#edit-form .phoneNo1').val());
+                    $(".edit-box").css('display','none');
+                }
+            }
+        })
+        }else{
+            alert('请填写规范数值')
+        }
+    })
+
+    //编辑密码
+    $('#pasBtn').click(function(){
+        $.ajax({
+            type:'put',
+            url:'/user/password',
+            data:{
+                'phoneNo':$('#phoneNo').html(),
+                'password':$('.rePassword').val()
+            },
+            success:function(data){
+                if(data.errcode==0){
+                    alert('修改密码成功');
+                    $(".edit-box1").css('display','none');
+                }
+            }
+        })
+    })
+
+</script>
+</html>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "tcmd",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/tcmd"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "ejs": "~2.5.2",
+    "express": "~4.14.0",
+    "mongoose": "^4.9.7",
+    "mongoose-auto-increment": "^5.0.1",
+    "morgan": "~1.7.0",
+    "serve-favicon": "~2.3.0",
+    "underscore": "^1.8.3"
+  }
+}

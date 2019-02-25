@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>病案学习</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/hf.css">
+    <link rel="stylesheet" href="../laydate/skins/default/laydate.css">
+    <style>
+        /*面板样式 诊断中*/
+        #content{
+            width: 983px;
+        }
+        .sort{
+            height: 101px;
+            line-height: 101px;
+            padding-left: 34px;
+            border-bottom:1px solid #d9dbdd;
+        }
+        .sort-d li{
+            float: left;
+            width:100px;
+            text-align:center;
+            overflow: hidden;
+            padding: 5px;
+            border: 2px solid transparent;
+        }
+        .con-box{
+            padding-left: 34px;
+            padding-right: 34px;
+        }
+        .c-title{
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .u-inf-det{
+            width: 100%;
+            overflow: hidden;
+        }
+        .u-inf-det li{
+            float:left;
+            width: 33%;
+        }
+        select{
+            height: 26px;
+            padding: 0 37px;
+        }
+        #uForm .man,#sForm .man{
+            margin-right:26px;
+        }
+        .u-inf-det span{
+            display: inline-block;
+            width: 65px;
+            text-align: right;
+            color: #666;
+        }
+        .u-inf-det input{
+            border: 1px solid #d9dbdd;
+            height: 26px;
+            padding-left: 5px;
+
+        }
+        .u-inf-det input.date{
+            width: 30%;
+        }
+        .u-inf-det li{
+            margin-top:17px;
+            margin-bottom: 10px;
+        }
+        #content2 form{
+            padding: 6px;
+        }
+        #content2 .con-box{
+            margin:34px;
+            background: #fbfbfb;
+            border: 1px solid #d9dbdd;
+        }
+        /*按钮*/
+        .btns{
+            margin-bottom: 15px;
+            padding-right:48px ;
+        }
+        .reset,.lookF{
+            background: #fbfbfb;
+            color: #666;
+            padding: 6px 12px;
+            border: 1px solid #d9dbdd;
+            border-radius: 4px;
+        }
+        .lookF{
+            color: #fff;
+            background:#4fb773;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+
+        /*添加学习样式*/
+        .add{
+            color:#87d068;
+            cursor: pointer;
+        }
+        .added{
+            color:#999;
+            cursor: pointer;
+        }
+
+        /*分页*/
+        /*内容样式*/
+        .pagination {
+            margin: 50px 30px;
+            /* width: 800px; */
+            text-align: right;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            border: 1px solid #999;
+            color: #666;
+        }
+
+        .pagination a, .pagination span {
+            display: inline-block;
+            padding: 0.1em 0.4em;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .pagination .current {
+            background: #4fb773;
+            color: #fff;
+            border: 1px solid #999;
+        }
+
+        /*.pagination .currentPrev, .pagination .currentNext{*/
+            /*color: #999;*/
+            /*background: #fff;*/
+            /*border: 1px solid #999;*/
+        /*}*/
+        .pagination .currentPrev, .pagination .currentNext{
+            color: #c6c6c6;
+            background: #fff;
+            border: 1px solid #c6c6c6;
+        }
+
+        /*调整表格样式*/
+        .table td, .table th {
+            padding: 12px 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!--页头-->
+<%- include('../include/header') -%>
+<!--主体部分-->
+<div class="main">
+    <div class="main-box  container">
+        <!--侧边栏-->
+        <div id="sidebar" class="lf">
+            <!--疾病诊断-->
+            <ul>
+                <li class="illness"><span class="L-title">疾病诊断</span></li>
+                <li class="T" id="illnessN"><a href="indexNPage">待诊断</a></li>
+                <li class="T" id="illness"><a href="indexPage">诊断中</a></li>
+            </ul>
+            <!--病案库-->
+            <ul>
+                <li class="record"><span class="L-title">病案库</span></li>
+                <li class="T" id="record"><a href="historyPage">历史病案</a></li>
+                <li  id="test" class="cur"><a href="studyPage">病案学习</a></li>
+            </ul>
+            <!--模拟诊断-->
+            <!--<ul>-->
+            <!--<li class="test"><span class="L-title">模拟诊断</span></li>-->
+            <!--<li class="T"><a href="javascript:;">模拟学习</a></li>-->
+            <!--</ul>-->
+            <!--设置-->
+            <ul>
+                <li class="setting"><span class="L-title">设置</span></li>
+                <li class="T" id="setting"><a href="comSettingPage">常用病症设置</a></li>
+                <li class="T" id="p-setting"><a href="personSettingPage">个人设置</a></li>
+            </ul>
+        </div>
+
+        <div id="content" class="rt">
+            <div class="contents">
+                <!--切换面板 历史病案-->
+                <div id="content2">
+                    <div class="sort">
+                        <p class="c-title c-t">病案学习</p>
+                    </div>
+                    <!--用户信息-->
+                    <div class="con-box">
+                        <!--信息表-->
+                        <form action="" method="post" id="uForm">
+                            <ul class="u-inf-det">
+                                <li>
+                                    <span>姓名：&nbsp;</span>
+                                    <input type="text" class="realName">
+                                </li>
+                                <li>
+                                    <span style="vertical-align:middle">性别：&nbsp;</span>
+                                    <label for="all" class="man" style="vertical-align:middle"><input id="all" type="radio" name="sex" checked="checked" style="vertical-align:middle" value=""/>全部</label>
+                                    <label for="mans" class="man" style="vertical-align:middle"><input id="mans" type="radio" name="sex"  style="vertical-align:middle" value="男"/>男 </label>
+                                    <label for="womans" class="woman" style="vertical-align:middle"><input  id="womans"type="radio" name="sex" style="vertical-align:middle" value="女"/> 女</label>
+                                </li>
+                                <li>
+                                    <span>年龄段：&nbsp;</span>
+                                    <select name="" id="sel">
+                                        <option value="">选择年龄段</option>
+                                        <option value="1">10岁以下</option>
+                                        <option value="2">10岁 ~ 20岁</option>
+                                        <option value="3">20岁 ~ 30岁</option>
+                                        <option value="4">30岁 ~ 40岁</option>
+                                        <option value="5">40岁 ~ 50岁</option>
+                                        <option value="6">50岁 ~ 60岁</option>
+                                        <option value="7">60岁以上</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <span>病症名称：&nbsp;</span>
+                                    <input type="text"  class="diseaseName">
+                                </li>
+                                <li>
+                                    <span>分型名称：&nbsp;</span>
+                                    <input type="text" class="tcmtName">
+                                </li>
+                                <li>
+                                    <span>就诊时间：&nbsp;</span>
+                                    <input type="text" class="date" id="date_s">&nbsp;~&nbsp;<input type="text" class="date" id="date_e">
+                                </li>
+                            </ul>
+                            <p class="btns rt">
+                                <input type="reset" value="清空" class="reset">
+                                <a href="#" class="lookF" id="lookF">查询</a>
+                            </p>
+                        </form>
+                    </div>
+                    <table id="study" align="center" class="table">
+                        <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>年龄</th>
+                            <th>病症名称</th>
+                            <th>分型名称</th>
+                            <th>就诊时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <!--<tr>-->
+                            <!--<td>1</td>-->
+                            <!--<td>张三</td>-->
+                            <!--<td>男</td>-->
+                            <!--<td>42 岁</td>-->
+                            <!--<td>颈型颈椎病</td>-->
+                            <!--<td>风湿湿痹型</td>-->
+                            <!--<td>2015-12-24</td>-->
+                            <!--<td><a href="casePage">查看详情</a></td>-->
+                        <!--</tr>-->
+                    </table>
+                    <div class="pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--页尾-->
+<%- include('../include/footer') -%>
+</body>
+<script src="../js/jquery-1.11.3.js"></script>
+<script src="../js/index.js"></script>
+<script src="../js/page.js"></script>
+<script src="../laydate/laydate.js"></script>
+<script src="../js/sharing.js"></script>
+<script>
+    //    转换年月日
+    function add0(m){return m<10?'0'+m:m };
+    function getDate(shijianchuo) {
+        //shijianchuo是整数，否则要parseInt转换
+        var time = new Date(shijianchuo);
+        var y = time.getFullYear();
+        var m = time.getMonth()+1;
+        var d = time.getDate();
+        return y+'-'+add0(m)+'-'+add0(d);
+    };
+    //    var doctorId=sessionStorage.getItem('id');
+//    var doctorId=1;
+    var pageIndex=1;
+    $(function(){
+//        页码
+        $.ajax({
+            type: "get",
+            url:'/record/studyRecordList?realName=&diseaseName=&tcmtName=&minAge=&maxAge=&gender=&minDate=&maxDate=&pageIndex='+pageIndex,
+            contentType:"application/x-www-form-urlencoded",
+            success:function (data) {
+                console.log('data===1',data);
+                var option = {
+                    current: 1,
+                    prev: "前一页",
+                    next: "后一页",
+                    pageSize:15,  //每页多少条数据
+                    count:data.totalAmount,      //总数量
+                    callback: function(num){
+                        console.log("------------callback--------")
+                    }
+                };
+                $('.pagination').createPage(option);
+            }
+        });
+
+
+//        分页
+        function pageNumber(pageIndex){
+            $.ajax({
+                type: 'get',
+                url:'/record/studyRecordList?realName=&diseaseName=&tcmtName=&minAge=&maxAge=&gender=&minDate=&maxDate=&pageIndex='+pageIndex,
+                success:function(data){
+                    if(data.errcode==0){
+                        var html='';
+                        if(data.recordList.length==0){
+                            html+=`<td colspan=8>没有相关结果</td>`;
+                        }else{
+                            console.log('学习列表data:',data.recordList);
+                            $.each(data.recordList,function(i,item){
+                            html+=`
+                             <tr>
+                                    <td>${15*(pageIndex-1)+(i+1)}</td>
+                                    <td>${item.realName}</td>`
+                            if(!item.gender){
+                                html+=`<td>-</td>`
+                            }else{
+                                html+=`<td>${item.gender}</td>`
+                            }
+                            if(!item.gender){
+                                html+=`<td>-</td>`
+                            }else{
+                                html+=`<td>${item.age}岁</td>`
+                            }
+                            html+=`
+                                    <td>${item.diseaseName}</td>
+                                    <td>${item.tcmtName}</td>
+                                    <td>${getDate(item.createTime)}</td>
+                                    <td><a href="javascript:;" class="caseLink" data-recordId=${item._id} target="_blank">查看详情</a></td>
+                               </tr>`
+                        })
+                        }
+                        $('#study tbody').html(html);
+                    }
+                }
+            })
+        }
+        pageNumber(1);
+        page(pageNumber);
+    })
+
+    // ********************日期插件调用*******************************************************************
+    laydate({
+        elem:"#date_s",
+        format:"YYYY-MM-DD",
+        istime:true,
+        festival:true
+    });
+    laydate({
+        elem:"#date_e",
+        format:"YYYY-MM-DD",
+        istime:true,
+        festival:true
+    });
+
+
+//    查询搜索
+    $('#lookF').click(function(){
+        console.log('click');
+        var realName=$('#uForm .realName').val().trim();
+        console.log('realName:',realName);
+        var gender=$('#uForm input:radio[name="sex"]:checked').val().trim();
+//        var gender='';
+        console.log('gender:',gender);
+        var minAge='';
+        var maxAge='';
+        if($('#sel').val()==1){
+            minAge=0;
+            maxAge=9;
+            console.log('minAge:',minAge);
+            console.log('maxAge:',maxAge);
+        }else if($('#sel').val()==2){
+            minAge=10;
+            maxAge=19;
+            console.log('minAge:',minAge);
+            console.log('maxAge:',maxAge);
+        }else if($('#sel').val()==3){
+            minAge=20;
+            maxAge=29;
+            console.log('minAge:',minAge);
+            console.log('maxAge:',maxAge);
+        }else if($('#sel').val()==4){
+            minAge=30;
+            maxAge=39;
+            console.log('minAge:',minAge);
+            console.log('maxAge:',maxAge);
+        }else if($('#sel').val()==5){
+            minAge=40;
+            maxAge=49;
+            console.log('minAge:',minAge);
+            console.log('maxAge:',maxAge);
+        }else if($('#sel').val()==6){
+            minAge=50;
+            maxAge=59;
+            console.log('minAge:',minAge);
+            console.log('maxAge:',maxAge);
+        }else if($('#sel').val()==7){
+            minAge=60;
+            maxAge=100;
+            console.log('minAge:',minAge);
+            console.log('maxAge:',maxAge);
+        }else{
+            minAge='';
+            maxAge='';
+            console.log('minAge:',minAge);
+            console.log('maxAge:',maxAge);
+        }
+
+        var diseaseName =$('#uForm .diseaseName').val().trim();
+        console.log('diseaseName:',diseaseName);
+        var tcmtName =$('#uForm .tcmtName').val().trim();
+        console.log('tcmtName:',tcmtName);
+
+        var minDate=$('#date_s').val();
+        if(minDate!=''){
+            var str_s = minDate; // 日期字符串
+            str_s = str_s.replace(/-/g,'/'); // 将-替换成/，因为下面这个构造函数只支持/分隔的日期字符串
+            var date_s = new Date(str_s);
+            minDate = date_s.getTime();
+            console.log('minDate:',minDate);
+        }else{
+            console.log('minDate:',minDate);
+        }
+        var maxDate=$('#date_e').val();
+        if(maxDate!=''){
+            var str_e = maxDate; // 日期字符串
+            str_e = str_e.replace(/-/g,'/'); // 将-替换成/，因为下面这个构造函数只支持/分隔的日期字符串
+            var date_e = new Date(str_e);
+            maxDate= date_e.getTime();
+            console.log('maxDate:',maxDate);
+        }else{
+            console.log('maxDate:',maxDate);
+        }
+//        var doctorId=sessionStorage.getItem('id');
+//        console.log('doctorId:',doctorId);
+
+        //        页码
+        $.ajax({
+            type: "get",
+            url:'/record/studyRecordList?realName='+realName+'&diseaseName='+diseaseName+'&tcmtName='+tcmtName+'&minAge='+minAge+'&maxAge='+maxAge+'&gender='+gender+'&minDate='+minDate+'&maxDate='+maxDate+'&pageIndex='+pageIndex,
+            contentType:"application/x-www-form-urlencoded",
+            success:function (data) {
+                console.log('data===1',data);
+                var option = {
+                    current: 1,
+                    prev: "前一页",
+                    next: "后一页",
+                    pageSize:15,  //每页多少条数据
+                    count:data.totalAmount,      //总数量
+                    callback: function(num){
+                        console.log("------------callback--------")
+                    }
+                };
+                $('.pagination').createPage(option);
+            }
+        });
+
+
+        function pageNumber(pageIndex){
+            $.ajax({
+                type: 'get',
+                url:'/record/studyRecordList?realName='+realName+'&diseaseName='+diseaseName+'&tcmtName='+tcmtName+'&minAge='+minAge+'&maxAge='+maxAge+'&gender='+gender+'&minDate='+minDate+'&maxDate='+maxDate+'&pageIndex='+pageIndex,
+                success:function(data){
+                    if(data.errcode==0){
+                        var html='';
+                        console.log('学习列表data:',data.recordList);
+                        if(data.recordList.length==0){
+                            html+=`<td colspan=8>没有相关结果</td>`;
+                        }else{
+                            $.each(data.recordList,function(i,item){
+                                html+=`
+                         <tr>
+                                <td>${15*(pageIndex-1)+(i+1)}</td>
+                                <td>${item.realName}</td>`
+                                if(!item.gender){
+                                    html+=`<td>-</td>`
+                                }else{
+                                    html+=`<td>${item.gender}</td>`
+                                }
+                                if(!item.gender){
+                                    html+=`<td>-</td>`
+                                }else{
+                                    html+=`<td>${item.age}岁</td>`
+                                }
+                                html+=`
+                                <td>${item.diseaseName}</td>
+                                <td>${item.tcmtName}</td>
+                                <td>${getDate(item.createTime)}</td>
+                                <td><a href="javascript:;" class="caseLink" data-recordId=${item._id} target="_blank">查看详情</a></td>
+                           </tr>`
+                            })
+                        }
+                        $('#study tbody').html(html);
+                    }
+                }
+            })
+        }
+        pageNumber(1);
+        page(pageNumber);
+
+    });
+
+    //点击查看详情时
+    $('.table').on('click','.caseLink',function(){
+        window.open('caseAllPage?recordId='+$(this).attr('data-recordId'));
+    })
+</script>
+</html>
+</html>

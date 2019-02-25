@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>常用设置</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/hf.css">
+    <link rel="stylesheet" href="../laydate/skins/default/laydate.css">
+
+    <style>
+        /*常用病症*/
+        #content {
+            width: 983px;
+        }
+        .c-title {
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            padding-left: 34px;
+        }
+        .c-t {
+            height: 70px;
+            line-height: 70px;
+        }
+        .sort {
+            height: 101px;
+            border-bottom: 1px solid #d9dbdd;}
+
+        .coms td:first-child,.coms th:first-child,.coms td:last-child,.coms th:last-child{
+            padding:12px 0;
+        }
+        .coms td:nth-child(2),.coms th:nth-child(2){
+            text-align: left;
+        }
+
+
+        .sort-d{
+            /*overflow: hidden;*/
+            height: 29px;
+            line-height: 29px;
+        }
+        .sort-d li{
+            float: left;
+            width: 118px;
+            text-align: center;
+            color: #333;
+            cursor: pointer;
+        }
+        .show{
+            border-bottom: 2px solid #4fb773;
+        }
+        .curShow{
+            display:block;
+        }
+        .noCurShow{
+            display: none;
+        }
+        #com-parting td:first-child,#com-parting td:first-child{
+            padding: 0 17px !important;
+        }
+        #com-parting td:last-child,#com-parting td:last-child{
+             padding: 0 10px !important;
+         }
+
+    </style>
+</head>
+<body>
+<!--页头-->
+<%- include('../include/header') -%>
+<!--主体部分-->
+<div class="main">
+    <div class="main-box  container">
+        <!--侧边栏-->
+        <div id="sidebar" class="lf">
+            <!--疾病诊断-->
+            <ul>
+                <li class="illness"><span class="L-title">疾病诊断</span></li>
+                <li class="T" id="illnessN"><a href="indexNPage">待诊断</a></li>
+                <li class="T" id="illness"><a href="indexPage">诊断中</a></li>
+            </ul>
+            <!--病案库-->
+            <ul>
+                <li class="record"><span class="L-title">病案库</span></li>
+                <li class="T" id="record"><a href="historyPage">历史病案</a></li>
+                <li  id="test"><a href="studyPage">病案学习</a></li>
+            </ul>
+            <!--模拟诊断-->
+            <!--<ul>-->
+                <!--<li class="test"><span class="L-title">模拟诊断</span></li>-->
+                <!--<li class="T"><a href="javascript:;">模拟学习</a></li>-->
+            <!--</ul>-->
+            <!--设置-->
+            <ul>
+                <li class="setting"><span class="L-title">设置</span></li>
+                <li class="T cur" id="setting"><a href="comSettingPage">常用病症设置</a></li>
+                <li class="T" id="p-setting"><a href="personSettingPage">个人设置</a></li>
+            </ul>
+        </div>
+
+        <div id="content" class="rt">
+            <div class="contents">
+                <!--切换面板 常用病症设置-->
+                <div id="content5">
+                    <div class="sort">
+                        <p class="c-title c-t">常用病症设置</p>
+                        <ul class="sort-d">
+                            <li class="show">常见病症</li>
+                            <li>常见分型</li>
+                        </ul>
+                    </div>
+                    <div class="con-box">
+                        <!--常用病症-->
+                        <div class="com-setting curShow">
+                            <table id="com-setting" class="coms table" align="center">
+                                <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>分型</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                                <!--<tr>-->
+                                    <!--<td>1</td>-->
+                                    <!--<td>颈椎病</td>-->
+                                    <!--<td><a href="#">移除</a></td>-->
+                                <!--</tr>-->
+                            </table>
+                        </div>
+                        <!--常用分型-->
+                        <div class="com-parting noCurShow">
+                            <table id="com-parting" class="coms table" align="center">
+                                <thead>
+                                    <tr>
+                                        <th>编号</th>
+                                        <th>分型</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--页尾-->
+<%- include('../include/footer') -%>
+</body>
+<script src="../js/jquery-1.11.3.js"></script>
+<script src="../js/sharing.js"></script>
+<script>
+//    切换常见病症与分型
+    $('.sort-d').on('click','li',function(){
+        $(this).addClass('show').siblings('.show').removeClass('show');
+        var i = $(this).index();//下标第一种写法
+//        console.log(i);
+        $('.con-box div').eq(i).show().siblings().hide();
+    })
+
+//点击移除
+    $('table').on('click','.diseaseLink',function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'delete',
+            url:'/frequency/frequency',
+            data:{frequencyId:$(this).attr('data-id').replace(/[^0-9]/ig,"")},
+            success:function(data){
+                console.log('==',data);
+                if(data.errcode==0){
+                    var trHtml1='';
+                    $.ajax({
+                        type:'get',
+                        url:'/frequency/commonSymptomList?userId='+id,
+                        success:function(data){
+                            $.each(data.symptomList,function(i,item){
+                                trHtml1+=`<tr id=${item.symptomId}><td>${i+1}</td><td>${item.symptom}</td><td><a href="javascript:;" class="remove diseaseLink" data-id=Id${item._id}>移除</a></td></tr>`;
+                            })
+                            $('#com-setting tbody').html(trHtml1);
+                        }
+                    })
+                    alert('删除常见病症成功');
+                }
+            }
+        })
+
+
+//
+//        window.location.reload();
+    })
+
+
+    $('table').on('click','.tcmdLink',function(e){
+    e.preventDefault();
+    $.ajax({
+        type:'delete',
+        url:'/frequency/frequency',
+        data:{frequencyId:$(this).attr('data-id').replace(/[^0-9]/ig,"")},
+        success:function(data){
+            console.log('==',data);
+            if(data.errcode==0){
+                //分型
+                var trHtml2='';
+                $.ajax({
+                    type:'get',
+                    url:'/frequency/commonSyndromeList?userId='+id,
+                    success:function(data){
+                        $.each(data.syndromeList,function(i,item){
+                            trHtml2+=`<tr><td>${i+1}</td><td id=${item.syndromeId}>${item.syndrome}</td><td><a href="javascript:;" class="remove tcmdLink" data-id=Id${item._id}>移除</a></td></tr>`;
+                        })
+                        $('#com-parting tbody').html(trHtml2);
+                    }
+                })
+                alert('删除常见分型成功');
+            }
+        }
+    })
+
+
+//
+//        window.location.reload();
+})
+var id=sessionStorage.getItem('id');
+
+    //获取常见病症
+    $(function(){
+        var trHtml1='';
+        $.ajax({
+            type:'get',
+            url:'/frequency/commonSymptomList?userId='+id,
+            success:function(data){
+                $.each(data.symptomList,function(i,item){
+                    trHtml1+=`<tr id=${item.symptomId}><td>${i+1}</td><td>${item.symptom}</td><td><a href="javascript:;" class="remove diseaseLink" data-id=Id${item._id}>移除</a></td></tr>`;
+                })
+                $('#com-setting tbody').html(trHtml1);
+            }
+        })
+
+        //分型
+        var trHtml2='';
+        $.ajax({
+            type:'get',
+            url:'/frequency/commonSyndromeList?userId='+id,
+            success:function(data){
+                $.each(data.syndromeList,function(i,item){
+                    trHtml2+=`<tr><td>${i+1}</td><td id=${item.syndromeId}>${item.syndrome}</td><td><a href="javascript:;" class="remove tcmdLink" data-id=Id${item._id}>移除</a></td></tr>`;
+                })
+                $('#com-parting tbody').html(trHtml2);
+            }
+        })
+    })
+</script>
+</html>
+</html>

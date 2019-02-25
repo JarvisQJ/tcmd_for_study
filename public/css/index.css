@@ -1,0 +1,39 @@
+
+/*面板样式 诊断中*/
+#content{
+    width: 983px;
+}
+.sort{
+    height: 101px;
+    line-height: 101px;
+    padding-left: 34px;
+    border-bottom:1px solid #d9dbdd;
+}
+.sort-d li{
+    float: left;
+    width:100px;
+    text-align:center;
+    overflow: hidden;
+    padding: 5px;
+    border: 2px solid transparent;
+}
+.con-box{
+    padding-left: 34px;
+    padding-right: 34px;
+}
+.c-title{
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+}
+/*新建诊断*/
+.new{
+    margin: 20px 0;
+    overflow: hidden;
+}
+.new-link{
+    padding:9px 46px;
+    background:#4fb773;
+    color: #fff;
+    border-radius: 4px;
+}

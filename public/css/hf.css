@@ -1,0 +1,70 @@
+/*头部*/
+.h_main{
+    height: 70px;
+    background:#4fb773;
+    line-height: 70px;
+}
+.h-title{
+    font-size: 28px;
+    color:#fff;
+    font-weight: 500;
+}
+.logo-box{
+    display: inline-block;
+}
+.logo{
+    display:inline-block;
+    vertical-align: middle;
+    margin-top: -14px;
+    margin-right: 10px;
+}
+.Login{
+    float: right;
+    font-size: 14px;
+    color:#333;
+}
+/*底部*/
+#footer{
+    /*position: fixed;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+}
+.f_main{
+    height: 100px;
+    background: #cdcdcd;
+}
+.footer-box{
+    padding-top: 30px;
+}
+.about,.copy{
+  text-align: center;
+}
+.copy{
+    margin-top: 18px;
+}
+.about  a{
+    color: #fff;
+    margin-left: 48px;
+}
+.about  a:first-child{
+    margin-left:0;
+}
+.copy,.about span{
+    color: #fff;
+}
+
+/*用户名*/
+.user-box span,.user-box b{
+    color:#fff;
+    font-size: 14px;
+}
+.user-box b{
+    font-size: 16px;
+}
+.user-box{
+    margin-right: 6px;
+}
+.userName{
+    margin-right: 6px;
+}

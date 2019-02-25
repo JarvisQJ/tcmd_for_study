@@ -1,0 +1,180 @@
+.main_header_box{
+    height: 80px;
+    border-bottom: 1px solid #d9dbdd;
+    padding: 32px 30px 0 30px;
+}
+.main_header{
+    height: 80px;
+    line-height: 80px;
+}
+.main_content{
+    margin: 20px 30px 0;
+    /*border: 1px solid #d9dbdd;*/
+    padding-bottom: 80px;
+    overflow: hidden;
+}
+.title{
+    color:#333;
+    font-size: 16px;
+    font-weight: 500;
+}
+/*患者信息*/
+.p_infor{
+    width:553px;
+    border-radius: 4px;
+    min-height: 741px;
+    overflow-y: auto;
+    border: 1px solid #d9dbdd;
+}
+.treatment{
+    border-radius: 4px;
+    border: 1px solid #d9dbdd;
+    width:553px;
+    margin-top: 20px;
+    height: 250px;
+    overflow-y: auto;
+}
+.disease{
+    overflow: hidden;
+    width:553px;
+    border-radius: 4px;
+    /*min-height: 820px;*/
+    margin-left: 19px;
+    overflow-y: hidden;
+}
+.p_title{
+    font-size: 14px;
+    color: #666;
+    background: #f5f5f5;
+    padding-left: 20px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #d9dbdd;
+}
+/*头像*/
+.p_content{
+    padding-left: 29px;
+    padding-top: 12px;
+    overflow: hidden;
+}
+.p_img{
+    width:80px;
+    height: 98px;
+    background: url('../imgs/p_img.jpg');
+    background-size: cover;
+}
+.p_infor i{
+    font-style: normal;
+}
+.p_content ul{
+    margin-left: 42px;
+}
+.p_infor ul li{
+    margin-top:18px;
+}
+.p_infor ul li:first-child{
+    margin-top:0;
+}
+.p_infor1 b{
+    font-size:18px;
+    color:#333;
+    font-weight: normal;
+}
+.p_content .p_infor2{
+    margin-top: 7px;
+    margin-left: 60px;
+}
+.p_infor i{
+    color:#666;
+}
+.p_infor span{
+    color:#000;
+}
+/*住址等信息*/
+.more{
+    margin-top: 20px;
+    padding-left: 30px;
+}
+
+/*诊断*/
+.diagnosis{
+    height: 470px;
+    border: 1px solid #d9dbdd;
+    border-radius: 4px;
+}
+/*展开面板*/
+#panel1 ,#panel2{ background: #f5f5f5; height: 176px;
+    overflow-y:auto;
+    margin: 20px;
+    margin-top: 4px;
+    border-radius: 4px;
+}
+#panel1{
+    display: block;
+}
+#panel2{
+    /*display: none;*/
+}
+.slide {
+    padding-left: 20px;
+    height: 40px;
+    line-height: 40px;
+}
+.btn-slide {
+    width: 144px;
+    height: 40px;
+    padding: 10px 10px 0 20px;
+    /*display: block;*/
+    font: bold 120%/100% Arial, Helvetica, sans-serif;
+    color: #2db7f5;
+    font-weight: normal;
+}
+/*.active {*/
+    /*background-position: right 12px;*/
+    /*display:block;*/
+/*}*/
+
+.title_slide{
+    font-size:16px;
+    color:#333;
+    font-weight: bold;
+}
+/*面板一*/
+#panel1 .det i,#panel2 .det i{
+    display: inline-block;
+    font-style: normal;
+    margin-right: 5px;
+}
+.det{
+    padding:10px;
+}
+.det li{
+    margin-bottom: 20px;
+}
+.det li span,.det li i{
+    color:#333;
+}
+/*#panel2{*/
+    /*position: absolute;*/
+    /*z-index: 999;*/
+    /*width: 513px;*/
+/*}*/
+
+.treatment_det{
+    padding: 20px;
+    color: #333;
+    text-align: left;
+    line-height: 25px;
+    text-indent:2em;
+}
+
+/*完成按钮*/
+.finish{
+    padding:9px 49px;
+    background: #4fb773;
+    border-radius: 4px;
+    color: #fff;
+}
+.finish_box{
+    margin-top: 20px;
+}

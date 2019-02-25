@@ -1,0 +1,153 @@
+.main_header_box{
+    height: 110px;
+    border-bottom: 1px solid #d9dbdd;
+    padding: 32px 30px 0 30px;
+}
+.title_main_header{
+    font-size: 16px;
+    color: #000;
+    margin-bottom:28px;
+    font-weight: 500;
+}
+/*导航*/
+.navs{
+    overflow: hidden;
+}
+.navs li{
+    float:left;
+}
+.main_content{
+    margin: 20px 30px 0;
+    border: 1px solid #d9dbdd;
+    padding-bottom: 80px;
+}
+/*信息表*/
+#sForm{
+    overflow: hidden;
+}
+.u-inf-det{
+    width: 100%;
+    overflow: hidden;
+}
+.u-inf-det li{
+    float:left;
+    width: 280px;
+    /*line-height: ;*/
+}
+.u-inf-det .address{
+    width: 544px;
+}
+.u-inf-det .address input{
+    width: 84%;
+}
+.u-inf-det span{
+    display: inline-block;
+    width: 76px;
+    text-align: right;
+    color: #333;
+}
+.u-inf-lists span{
+    color: #333;
+}
+.u-inf-det input{
+    border: 1px solid #d9dbdd;
+    height: 26px;
+    padding-left: 5px;
+
+}
+.u-inf-det li{
+    margin-top:22px;
+}
+/*必填图标*/
+.must_edit{
+    position: relative;
+}
+.mark1,.mark2,.mark3{
+    position: absolute;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: url("../imgs/mark.png");
+    top: 9px;
+    left: 25px;
+}
+.mark2{
+    top: 9px;
+    left: -10px;
+}
+.mark3{
+    top:6px;
+    left:25px;
+}
+/*主诉等*/
+.u-inf-lists{
+    overflow: hidden;
+}
+.u-inf-lists li{
+    float: left;
+    width: 560px;
+    padding-left: 36px;
+    margin-top: 40px;
+}
+.u-inf-lists span{
+    margin-right: 4px;
+}
+textarea{
+    vertical-align:top;
+    border:1px solid #d9dbdd ;
+    padding-left: 5px;
+}
+.u-inf-lists li:nth-child(2){
+    margin-left: -12px;
+}
+.u_history,.f_history{
+    margin-left: -11px;
+}
+
+/*按钮等*/
+.btns{
+    padding-right: 22px;
+}
+.reset{
+    padding:5px 32px;
+    border-radius: 4px;
+    background:#fff;
+    border:1px solid #d9dbdd;
+    font-size: 12px;
+}
+.submit{
+    padding:6px 32px;
+    background:#4fb773;
+    color: #fff;
+    border-radius: 4px;
+    margin-left: 30px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+
+/*输入框提示*/
+.hint{
+    font-style: normal;
+    color:#f00;
+    position: absolute;
+    top:27px;
+    left:80px;
+    display: none;
+}
+.hint1,.hint2{
+    font-style: normal;
+    color:#f00;
+    position: absolute;
+    top:27px;
+    left:80px;
+    display: none;
+}
+
+.now{
+    display:block;
+}
+.mainSuit{
+    position: absolute;
+    top:128px;
+}
